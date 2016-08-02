@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="container">
+  <ul class="consumed_foods">
+    <% @consumed_foods.each do |consumed_food| %>
+      <li>
+        <p><%= consumed_food.scheduled_date %>, <%= consumed_food.food_id %></p>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= will_paginate %>
+</div>
