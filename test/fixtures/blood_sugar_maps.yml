@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tracked_day: 2016-08-02
+  comment: MyText
+
+two:
+  tracked_day: 2016-08-02
+  comment: MyText

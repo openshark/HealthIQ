@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802063826) do
+ActiveRecord::Schema.define(version: 20160802200749) do
+
+  create_table "blood_sugar_maps", force: :cascade do |t|
+    t.date     "tracked_day"
+    t.text     "comment"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "consumed_foods", force: :cascade do |t|
-    t.integer  "food_id"
     t.datetime "scheduled_date"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -35,7 +41,6 @@ ActiveRecord::Schema.define(version: 20160802063826) do
   end
 
   create_table "performed_exercises", force: :cascade do |t|
-    t.integer  "exercise_id"
     t.datetime "scheduled_date"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
