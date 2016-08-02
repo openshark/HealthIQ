@@ -16,7 +16,7 @@ class PerformedExerciseTest < ActiveSupport::TestCase
     @performed_exercise.exercise_id = nil
     assert_not @performed_exercise.valid?
   end
-  test "performed_exercise glycemic_index should be present" do
+  test "performed_exercise date should be present" do
     @performed_exercise.scheduled_date = nil
     assert_not @performed_exercise.valid?
   end
