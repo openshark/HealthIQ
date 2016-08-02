@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="container">
+  <ul class="foods">
+    <% @foods.each do |food| %>
+      <li>
+        <p><%= food.name %>, <%= food.glycemic_index %></p>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= will_paginate %>
+</div>
