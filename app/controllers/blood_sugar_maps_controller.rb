@@ -1,0 +1,2 @@
+class BloodSugarMapsController < ApplicationController
+end
