@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="container">
+  <ul class="performed_exercises">
+    <% @performed_exercises.each do |performed_exercise| %>
+      <li>
+        <p><%= performed_exercise.scheduled_date %>, <%= performed_exercise.exercise_id %></p>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= will_paginate %>
+</div>
