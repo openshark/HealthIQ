@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802201545) do
+ActiveRecord::Schema.define(version: 20160802202151) do
 
   create_table "blood_sugar_maps", force: :cascade do |t|
     t.date     "tracked_day"
@@ -22,11 +22,13 @@ ActiveRecord::Schema.define(version: 20160802201545) do
 
   create_table "consumed_foods", force: :cascade do |t|
     t.datetime "scheduled_date"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "food_id"
+    t.integer  "blood_sugar_map_id"
   end
 
+  add_index "consumed_foods", ["blood_sugar_map_id"], name: "index_consumed_foods_on_blood_sugar_map_id"
   add_index "consumed_foods", ["food_id"], name: "index_consumed_foods_on_food_id"
 
   create_table "exercises", force: :cascade do |t|
@@ -45,11 +47,13 @@ ActiveRecord::Schema.define(version: 20160802201545) do
 
   create_table "performed_exercises", force: :cascade do |t|
     t.datetime "scheduled_date"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "exercise_id"
+    t.integer  "blood_sugar_map_id"
   end
 
+  add_index "performed_exercises", ["blood_sugar_map_id"], name: "index_performed_exercises_on_blood_sugar_map_id"
   add_index "performed_exercises", ["exercise_id"], name: "index_performed_exercises_on_exercise_id"
 
 end
