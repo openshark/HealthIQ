@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="container">
+  <ul class="exercises">
+    <% @exercises.each do |exercise| %>
+      <li>
+        <p><%= exercise.name %>, <%= exercise.exercise_index %></p>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= will_paginate %>
+</div>
