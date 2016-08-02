@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'home'   => 'home#index'
+  root "home#index"
+
   resources :exercises, only: [:index]
   resources :foods, only: [:index]
   resources :performed_exercises, only: [:index, :new, :show, :create]
