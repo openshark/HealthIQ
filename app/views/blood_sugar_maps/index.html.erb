@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<div class="container">
+  <ul class="blood_sugar_maps">
+    <% @blood_sugar_maps.each do |blood_sugar_map| %>
+      <li>
+        <p><%= link_to "Check out the graphs", blood_sugar_map %>, <%= blood_sugar_map.tracked_day %>, <%= blood_sugar_map.comment %></p>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= will_paginate %>
+</div>

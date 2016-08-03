@@ -1,0 +1,24 @@
+<%= form_for(@blood_sugar_map) do |f| %>
+
+  <div class="row" >
+    <% if flash[:success] %>
+      <h3><%= flash[:success] %></h3>
+    <% end %>
+    <% if flash[:error] %>
+      <h3><%= flash[:error] %></h3>
+    <% end %>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.label :tracked_day %>
+        <%= f.date_field :tracked_day, required: true, placeholder: "tracked_day" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field col-xs-12">
+        <%= f.text_area :comment, placeholder: "Comment", class: ""  %>
+      </div>
+    </div>
+    <%= f.submit "Post" %>
+  </div>
+<% end %>
