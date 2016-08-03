@@ -1,13 +1,16 @@
 <%= form_for(@consumed_food) do |f| %>
 
     <div class="row">
-      <div class="field col-xs-6">
-        <%= f.label :exercise_id %>
+      <div class="col-xs-3">
+        <%= f.label :blood_sugar_map_id %>
+        <%= f.number_field :blood_sugar_map_id, required: true, placeholder: "blood_sugar_map_id" %>
+      </div>
+      <div class="col-xs-3">
+        <%= f.label :food_id %>
 
         <%= f.collection_select(:food_id, @food_list, :id, :name, {:include_blank => "Please select a food"}, {:required => true, :class => ""}) %>
-        <!-- < % = f.number_field :exercise_id, placeholder: "Ex id.", class: "white_background workout_map_set_input" % > -->
       </div>
-      <div class="col-xs-6">
+      <div class="col-xs-12">
         <%= f.label :scheduled_date %>
         <%= f.datetime_select :scheduled_date, required: true, placeholder: "scheduled_date", :minute_step => 1 %>
       </div>

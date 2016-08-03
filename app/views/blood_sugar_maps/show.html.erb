@@ -11,4 +11,18 @@
     <%= render 'performed_exercises/performed_exercise_form' %>
     <h3>Record a food consumed</h3>
     <%= render 'consumed_foods/consumed_food_form' %>
+
+    <% if @blood_sugar_map.performed_exercises.count > 0 %>
+      <h3>Exercises performed today </h3>
+      <% @blood_sugar_map.performed_exercises.each do |performed_exercise| %>
+        <%= render partial: "performed_exercises/performed_exercise", locals: {performed_exercise: performed_exercise} %>
+      <% end %>
+    <% end %>
+
+    <% if @blood_sugar_map.consumed_foods.count > 0 %>
+      <h3>Food consumed today </h3>
+      <% @blood_sugar_map.consumed_foods.each do |consumed_food| %>
+        <%= render partial: "consumed_foods/consumed_food", locals: {consumed_food: consumed_food} %>
+      <% end %>
+    <% end %>
 </div>

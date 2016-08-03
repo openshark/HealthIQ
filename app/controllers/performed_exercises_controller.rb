@@ -31,6 +31,6 @@ class PerformedExercisesController < ApplicationController
   private
 
   def performed_exercise_params
-    params.require(:performed_exercise).permit(:exercise_id, :scheduled_date)
+    params.require(:performed_exercise).permit(:exercise_id, :scheduled_date, :blood_sugar_map_id)
   end
 end

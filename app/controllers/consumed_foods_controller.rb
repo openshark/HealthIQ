@@ -30,6 +30,6 @@ class ConsumedFoodsController < ApplicationController
   private
 
   def consumed_food_params
-    params.require(:consumed_food).permit(:food_id, :scheduled_date)
+    params.require(:consumed_food).permit(:food_id, :scheduled_date, :blood_sugar_map_id)
   end
 end
