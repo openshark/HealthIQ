@@ -16,10 +16,9 @@ class BloodSugarMapsController < ApplicationController
     @consumed_food = ConsumedFood.new
 
     @blood_sugar_array = Array.new(1440) # 24 hours x 60 minutes
-    @normalization_array = Array.new(1440) # 24 hours x 60 minutes
+    # @normalization_array = Array.new(1440) # 24 hours x 60 minutes
     @glycation_array = Array.new(1440) # 24 hours x 60 minutes
     calculate_blood_sugar_array
-    calculate_glycation
   end
 
   def create
@@ -41,37 +40,45 @@ class BloodSugarMapsController < ApplicationController
 
       add_each_performed_exercise
       add_each_consumed_food
-      calculate_normilization
+      calculate_glycation_and_normalization
     end
 
-    def calculate_glycation
+    def calculate_glycation_and_normalization
       logger.debug "Starting calculate_glycation"
       blood_sugar_running_total = 80 # 80 comes from the base level of blood sugar for a person
+      number_of_nils_in_a_row = 0
       glycemic_running_total = 0
       @blood_sugar_array.each_with_index do |value, index|
         if value == nil
+          number_of_nils_in_a_row = number_of_nils_in_a_row + 1
           @blood_sugar_array[index] = blood_sugar_running_total
         else
+          number_of_nils_in_a_row = 0
           @blood_sugar_array[index] = blood_sugar_running_total + @blood_sugar_array[index]
         end
-        if @normalization_array[index] != nil
-          @blood_sugar_array[index] = @normalization_array[index] + @blood_sugar_array[index]
+
+#Check if normilzation needs to happen
+        if (number_of_nils_in_a_row >= 60) # TODO - magin number - (it has been more than 1 or 2 hours)
+          #normilzation begins
+          if blood_sugar_running_total > 80
+            @blood_sugar_array[index] = @blood_sugar_array[index] - 1
+            #TODO - magic number - this is because the normilzation happens at a rate of 1 unit per minute
+          end
+           if blood_sugar_running_total < 80
+            @blood_sugar_array[index] = @blood_sugar_array[index] + 1
+            #TODO - magic number - this is because the normilzation happens at a rate of 1 unit per minute
+          end
         end
+
+        # if @normalization_array[index] != nil
+        #   @blood_sugar_array[index] = @normalization_array[index] + @blood_sugar_array[index]
+        # end
         blood_sugar_running_total = @blood_sugar_array[index]
 
         if blood_sugar_running_total > 150 # 150 comes from the value when the sugar in your blood cristalizes - TODO remove magic number
           glycemic_running_total = glycemic_running_total + 1
         end
         @glycation_array[index] = glycemic_running_total
-      end
-    end
-
-    def calculate_normilization
-      logger.debug "Starting calculate_normilization"
-      number_of_nils_in_a_row = 0
-      @blood_sugar_array.each_with_index do |value, index|
-
-
       end
     end
 
