@@ -1,13 +1,5 @@
 <%= form_for(@consumed_food) do |f| %>
 
-  <div class="row" >
-    <% if flash[:success] %>
-      <h3><%= flash[:success] %></h3>
-    <% end %>
-    <% if flash[:error] %>
-      <h3><%= flash[:error] %></h3>
-    <% end %>
-
     <div class="row">
       <div class="field col-xs-6">
         <%= f.label :exercise_id %>
@@ -21,5 +13,4 @@
       </div>
     </div>
     <%= f.submit "Post" %>
-  </div>
 <% end %>

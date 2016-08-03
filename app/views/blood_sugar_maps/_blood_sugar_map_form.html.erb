@@ -1,12 +1,5 @@
 <%= form_for(@blood_sugar_map) do |f| %>
 
-  <div class="row" >
-    <% if flash[:success] %>
-      <h3><%= flash[:success] %></h3>
-    <% end %>
-    <% if flash[:error] %>
-      <h3><%= flash[:error] %></h3>
-    <% end %>
 
     <div class="row">
       <div class="col-xs-6">
@@ -20,5 +13,4 @@
       </div>
     </div>
     <%= f.submit "Post" %>
-  </div>
 <% end %>

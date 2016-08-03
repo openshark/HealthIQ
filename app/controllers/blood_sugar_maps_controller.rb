@@ -9,8 +9,11 @@ class BloodSugarMapsController < ApplicationController
 
   def show
     @blood_sugar_map = BloodSugarMap.find(params[:id])
+    
     @exercise_list = Exercise.all
     @food_list = Food.all
+    @performed_exercise = PerformedExercise.new
+    @consumed_food = ConsumedFood.new
   end
 
   def create

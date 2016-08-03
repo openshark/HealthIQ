@@ -1,4 +1,10 @@
 <!DOCTYPE html>
 <div class="container">
+  <% if flash[:success] %>
+    <h3><%= flash[:success] %></h3>
+  <% end %>
+  <% if flash[:error] %>
+    <h3><%= flash[:error] %></h3>
+  <% end %>
   <%= render 'blood_sugar_maps/blood_sugar_map_form' %>
 </div>

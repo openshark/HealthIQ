@@ -1,4 +1,14 @@
 <!DOCTYPE html>
 <div class="container">
+    <% if flash[:success] %>
+      <h3><%= flash[:success] %></h3>
+    <% end %>
+    <% if flash[:error] %>
+      <h3><%= flash[:error] %></h3>
+    <% end %>
     <%= render @blood_sugar_map %>
+    <h3>Record a exercise performed </h3>
+    <%= render 'performed_exercises/performed_exercise_form' %>
+    <h3>Record a food consumed</h3>
+    <%= render 'consumed_foods/consumed_food_form' %>
 </div>
