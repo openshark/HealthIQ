@@ -16,6 +16,7 @@ class BloodSugarMapsController < ApplicationController
     @consumed_food = ConsumedFood.new
 
     @blood_sugar_array = Array.new(1440) # 24 hours x 60 minutes
+    @normalization_array = Array.new(1440) # 24 hours x 60 minutes
     @glycation_array = Array.new(1440) # 24 hours x 60 minutes
     calculate_blood_sugar_array
     calculate_glycation
@@ -45,10 +46,33 @@ class BloodSugarMapsController < ApplicationController
 
     def calculate_glycation
       logger.debug "Starting calculate_glycation"
+      blood_sugar_running_total = 80 # 80 comes from the base level of blood sugar for a person
+      glycemic_running_total = 0
+      @blood_sugar_array.each_with_index do |value, index|
+        if value == nil
+          @blood_sugar_array[index] = blood_sugar_running_total
+        else
+          @blood_sugar_array[index] = blood_sugar_running_total + @blood_sugar_array[index]
+        end
+        if @normalization_array[index] != nil
+          @blood_sugar_array[index] = @normalization_array[index] + @blood_sugar_array[index]
+        end
+        blood_sugar_running_total = @blood_sugar_array[index]
+
+        if blood_sugar_running_total > 150 # 150 comes from the value when the sugar in your blood cristalizes - TODO remove magic number
+          glycemic_running_total = glycemic_running_total + 1
+        end
+        @glycation_array[index] = glycemic_running_total
+      end
     end
 
     def calculate_normilization
       logger.debug "Starting calculate_normilization"
+      number_of_nils_in_a_row = 0
+      @blood_sugar_array.each_with_index do |value, index|
+
+
+      end
     end
 
     def add_each_consumed_food
