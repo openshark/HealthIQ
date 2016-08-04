@@ -12,7 +12,7 @@
       </div>
       <div class="col-xs-12 col-md-6">
         <%= f.label :scheduled_date %>
-        <%= f.datetime_select :scheduled_date, required: true, placeholder: "scheduled_date", :minute_step => 1 %>
+        <%= f.time_select :scheduled_date, required: true, placeholder: "scheduled_date", :minute_step => 1 %>
       </div>
     </div>
     <%= f.submit "Post" %>
