@@ -5,7 +5,7 @@ class PerformedExerciseTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @performed_exercise = PerformedExercise.new(exercise_id: 1, scheduled_date: DateTime.now)
+    @performed_exercise = PerformedExercise.new(exercise_id: 1, scheduled_date: Time.now, blood_sugar_map_id: 1)
   end
 
   test "performed_exercise should be valid" do

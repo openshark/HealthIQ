@@ -5,7 +5,7 @@ class ConsumedFoodTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @consumed_food = ConsumedFood.new(food_id: 1, scheduled_date: DateTime.now)
+    @consumed_food = ConsumedFood.new(food_id: 1, scheduled_date: DateTime.now.strftime("%H:%M:%S"), blood_sugar_map_id: 1)
   end
 
   test "consumed_food should be valid" do
