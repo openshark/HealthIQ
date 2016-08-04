@@ -13,7 +13,7 @@ class PerformedExercisesController < ApplicationController
     @performed_exercise = PerformedExercise.new(performed_exercise_params)
     if @performed_exercise.save
       flash[:success] = "The exercise was recorded!"
-      redirect_to @performed_exercise
+      redirect_to @performed_exercise.blood_sugar_map
     else
       flash[:error] = "something went wrong!"
       render 'new'

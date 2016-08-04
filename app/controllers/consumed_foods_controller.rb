@@ -12,7 +12,7 @@ class ConsumedFoodsController < ApplicationController
     @consumed_food = ConsumedFood.new(consumed_food_params)
     if @consumed_food.save
       flash[:success] = "The food was recorded!"
-      redirect_to @consumed_food
+      redirect_to @consumed_food.blood_sugar_map
     else
       flash[:error] = "Something went wrong!"
       render 'new'
