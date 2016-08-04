@@ -1,28 +1,19 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The next evolution for this project would be to move away from a page that reloads
+each time there is an exercise or food added to the blood sugar map.
 
-Things you may want to cover:
+The ideal solution would ajax the exercise or food to the db to be stored.
+Then it would do calculations to add just that exercise or food to the array that would
+be stored and manipulated via js, rather than  calculate on the server and then passed.
+This way we don't need to recalculate the whole array each time.  
+- We can talk about this more on Monday if you would like.
 
-* Ruby version
+Important objects / concepts:
 
-* System dependencies
+blood_sugar_map - represents a day, it maps the exercises performed and the food
+  consumed on to a specific day.
 
-* Configuration
+exercise_performed - represents an exercise performed on a specific day and time.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+food_consumed - represents the food that is consumed at a specific time and day.
