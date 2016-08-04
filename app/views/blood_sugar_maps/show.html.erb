@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <div class="container">
-    <% if flash[:success] %>
-      <h3><%= flash[:success] %></h3>
-    <% end %>
-    <% if flash[:error] %>
-      <h3><%= flash[:error] %></h3>
-    <% end %>
+  <% if flash[:success] %>
+    <h3><%= flash[:success] %></h3>
+  <% end %>
+  <% if flash[:error] %>
+    <h3><%= flash[:error] %></h3>
+  <% end %>
 
-    <% index_for_graph = -1 %>
-    <%= line_chart [
-      {name: "Blood Sugar Levels", data: @blood_sugar_array.collect{|item|
-         index_for_graph = index_for_graph + 1;
-         [index_for_graph, item];
-    }}] %>
+  <% index_for_graph = 0 %>
+  <%= line_chart [
+    {name: "Blood Sugar Levels", data: @blood_sugar_array.collect{|item|
+       index_for_graph = index_for_graph + 1;
+       [index_for_graph, item];
+  }}] %>
 
-    <% index_for_graph = -1 %>
-    <%= line_chart [
-      {name: "Glycation Levels",
-       data: @glycation_array.collect{|item|
-         index_for_graph = index_for_graph + 1;
-         [index_for_graph, item];
-       }
-     }] %>
+  <% index_for_graph = 0 %>
+  <%= line_chart [
+    {name: "Glycation Levels",
+     data: @glycation_array.collect{|item|
+       index_for_graph = index_for_graph + 1;
+       [index_for_graph, item];
+     }
+   }] %>
+</div>
 
-    <%= render @blood_sugar_map %>
+<div class="light_gray_background">
+  <div class="container small_row">
     <h3>Record a exercise performed </h3>
-    <%= render 'performed_exercises/performed_exercise_form' %>
+    <%= render 'performed_exercises/performed_exercise_form_for_map' %>
     <h3>Record a food consumed</h3>
-    <%= render 'consumed_foods/consumed_food_form' %>
+    <%= render 'consumed_foods/consumed_food_form_for_map' %>
+  </div>
+</div>
 
+<div class="dark_gray_background">
+  <div class="container small_row">
     <div class="row">
       <div class="col-xs-12 col-md-6">
         <% if @blood_sugar_map.performed_exercises.count > 0 %>
@@ -48,9 +54,12 @@
         <% end %>
       </div>
     </div>
+  </div>
+</div>
 
-    <h1>Blood Sugar Array</h1>
-    <%= @blood_sugar_array.map(&:to_i) %>    <!-- convert them to ints for ease of reading -->
-    <h1>Glycation Array</h1>
-    <%= @glycation_array %>
-</div >
+<div class="container">
+  <h1>Blood Sugar Array</h1>
+  <%= @blood_sugar_array.map(&:to_i) %>    <!-- convert them to ints for ease of reading -->
+  <h1>Glycation Array</h1>
+  <%= @glycation_array %>
+</div>

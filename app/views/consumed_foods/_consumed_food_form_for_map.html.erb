@@ -1,0 +1,19 @@
+<%= form_for(@consumed_food) do |f| %>
+
+    <div class="row">
+      <div class="col-xs-3" style="display:none;">
+        <%= f.label :blood_sugar_map_id %>
+        <%= f.number_field :blood_sugar_map_id, :value => @blood_sugar_map.id, required: true, placeholder: "blood_sugar_map_id" %>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <%= f.label :food_id %>
+
+        <%= f.collection_select(:food_id, @food_list, :id, :name, {:include_blank => "Please select a food"}, {:required => true, :class => ""}) %>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <%= f.label :scheduled_date %>
+        <%= f.datetime_select :scheduled_date, required: true, placeholder: "scheduled_date", :minute_step => 1 %>
+      </div>
+    </div>
+    <%= f.submit "Post" %>
+<% end %>

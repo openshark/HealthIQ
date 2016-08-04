@@ -1,8 +1,20 @@
 #nav_bar{
-  height:60px;
+  height:50px;
   margin-bottom: 60px;
 }
 
 .light_orange_background{
   background-color: #FFCC80;
+}
+.light_gray_background{
+  background-color: #E0E0E0;
+}
+.dark_gray_background{
+  background-color: #212121;
+  color:white;
+}
+
+.small_row{
+  padding-top:60px;
+  padding-bottom:60px;
 }
