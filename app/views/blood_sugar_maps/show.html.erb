@@ -6,29 +6,51 @@
     <% if flash[:error] %>
       <h3><%= flash[:error] %></h3>
     <% end %>
+
+    <% index_for_graph = -1 %>
+    <%= line_chart [
+      {name: "Blood Sugar Levels", data: @blood_sugar_array.collect{|item|
+         index_for_graph = index_for_graph + 1;
+         [index_for_graph, item];
+    }}] %>
+
+    <% index_for_graph = -1 %>
+    <%= line_chart [
+      {name: "Glycation Levels",
+       data: @glycation_array.collect{|item|
+         index_for_graph = index_for_graph + 1;
+         [index_for_graph, item];
+       }
+     }] %>
+
     <%= render @blood_sugar_map %>
     <h3>Record a exercise performed </h3>
     <%= render 'performed_exercises/performed_exercise_form' %>
     <h3>Record a food consumed</h3>
     <%= render 'consumed_foods/consumed_food_form' %>
 
-    <% if @blood_sugar_map.performed_exercises.count > 0 %>
-      <h3>Exercises performed today </h3>
-      <% @blood_sugar_map.performed_exercises.each do |performed_exercise| %>
-        <%= render partial: "performed_exercises/performed_exercise", locals: {performed_exercise: performed_exercise} %>
-      <% end %>
-    <% end %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <% if @blood_sugar_map.performed_exercises.count > 0 %>
+          <h3>Exercises performed today </h3>
+          <% @blood_sugar_map.performed_exercises.each do |performed_exercise| %>
+            <%= render partial: "performed_exercises/performed_exercise", locals: {performed_exercise: performed_exercise} %>
+          <% end %>
+        <% end %>
+      </div>
 
-    <% if @blood_sugar_map.consumed_foods.count > 0 %>
-      <h3>Food consumed today </h3>
-      <% @blood_sugar_map.consumed_foods.each do |consumed_food| %>
-        <%= render partial: "consumed_foods/consumed_food", locals: {consumed_food: consumed_food} %>
-      <% end %>
-    <% end %>
+      <div class="col-xs-12 col-md-6">
+        <% if @blood_sugar_map.consumed_foods.count > 0 %>
+          <h3>Food consumed today </h3>
+          <% @blood_sugar_map.consumed_foods.each do |consumed_food| %>
+            <%= render partial: "consumed_foods/consumed_food", locals: {consumed_food: consumed_food} %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
     <h1>Blood Sugar Array</h1>
-    <%= @blood_sugar_array %>
-
+    <%= @blood_sugar_array.map(&:to_i) %>    <!-- convert them to ints for ease of reading -->
     <h1>Glycation Array</h1>
     <%= @glycation_array %>
-</div>
+</div >
